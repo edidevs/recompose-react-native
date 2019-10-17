@@ -1,5 +1,5 @@
 import React from 'react';
-import { withHandlers, withState} from 'recompose';
+import { compose, withHandlers, withState} from 'recompose';
 import { View, TextInput, Text } from 'react-native';
 
 
@@ -31,4 +31,9 @@ const addHandlers = withHandlers({
     }
 });
 
-export default addState(addHandlers(MyForm))
+export default compose(
+    addState,
+    addHandlers
+)(MyForm);
+
+// export default addState(addHandlers(MyForm))
