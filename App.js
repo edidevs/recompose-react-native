@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, withHandlers, withState} from 'recompose';
+import { compose, lifecycle, withHandlers, withState} from 'recompose';
 import { View, TextInput, Text } from 'react-native';
 
 
@@ -33,7 +33,12 @@ const addHandlers = withHandlers({
 
 export default compose(
     addState,
-    addHandlers
+    addHandlers,
+    lifecycle({
+      componentDidUpdate(){
+        console.warn("Hello World");
+      }
+    })
 )(MyForm);
 
 // export default addState(addHandlers(MyForm))
