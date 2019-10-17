@@ -1,5 +1,5 @@
 import React from 'react';
-import { withHandlers, withState} from 'recompose';
+import { compose, withHandlers, withState} from 'recompose';
 import { View, TextInput, Text } from 'react-native';
 
 
@@ -21,14 +21,19 @@ const MyForm = ({onChange, value }) => (
 );
 
 //withState accepts three parameters, stateName, stateUpdaterName, and initialState 
-const addState = withState('value', 'updateValue', '');
+// const addState = withState('value', 'updateValue', '');
 
-const addHandlers = withHandlers({
-    onChange : ({
-        updateValue
-    }) => (event) => {
-        updateValue(event)
-    }
-});
+// const addHandlers = withHandlers({
+//     onChange : ({
+//         updateValue
+//     }) => (event) => {
+//         updateValue(event)
+//     }
+// });
+
+export default compose(
+    addState,
+    addHandlers
+)(MyForm);
 
 export default addState(addHandlers(MyForm))
